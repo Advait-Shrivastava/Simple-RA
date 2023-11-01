@@ -1,0 +1,22 @@
+LOAD Student
+LOAD Marks
+MergedTable <- CROSS Student Marks
+JoinTable <- SELECT Student_Stud_Id == Marks_Stud_Id FROM MergedTable
+AgeGreater <- SELECT Stud_age >= 16 FROM JoinTable
+AgeLess <- SELECT Stud_age <= 18 FROM AgeGreater
+MathMarks <- SELECT Maths_marks >= 70 FROM AgeLess
+PhysicsMarks <- SELECT Physics_marks > 60 FROM MathMarks
+FinalResult <- PROJECT Student_Stud_Id, Maths_marks, Physics_marks, Stud_age FROM PhysicsMarks
+RENAME Student_Stud_Id, TO stud_id FROM FinalResult
+RENAME Stud_age, TO stud_age FROM FinalResult
+PRINT FinalResult
+
+CLEAR Student
+CLEAR Marks
+CLEAR MergedTable
+CLEAR JoinTable
+CLEAR AgeGreater
+CLEAR AgeLess
+CLEAR MathMarks
+CLEAR PhysicsMarks
+CLEAR FinalResult

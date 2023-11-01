@@ -1,0 +1,18 @@
+LOAD Student
+LOAD Advisor
+Student_Advisor <- CROSS Student Advisor
+Student_Advisor_JOIN <- SELECT Advisor_id == Adv_Id FROM Student_Advisor
+Student_Advisor_Sex_Opposite <- SELECT Stud_sex != Adv_sex FROM Student_Advisor_JOIN
+FinalResult <- PROJECT Stud_Id, Adv_Id, Stud_sex, Adv_sex FROM Student_Advisor_Sex_Opposite
+RENAME Stud_Id, TO stud_id FROM FinalResult
+RENAME Adv_Id, TO adv_Id FROM FinalResult
+RENAME Stud_sex, TO stud_sex FROM FinalResult
+RENAME Adv_sex, TO adv_sex FROM FinalResult
+PRINT FinalResult
+
+CLEAR Student
+CLEAR Advisor
+CLEAR Student_Advisor
+CLEAR Student_Advisor_JOIN
+CLEAR Student_Advisor_Sex_Opposite
+CLEAR FinalResult

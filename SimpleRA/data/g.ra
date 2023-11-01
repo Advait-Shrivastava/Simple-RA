@@ -1,0 +1,16 @@
+LOAD Student
+LOAD Advisor
+MergeTable <- CROSS Student Advisor
+JoinTable <- SELECT Advisor_id == Adv_Id FROM MergeTable
+AgeGreater40 <- SELECT Adv_age > 40 FROM JoinTable
+Result_G <- PROJECT Stud_Id, Adv_Id FROM AgeGreater40
+RENAME Stud_Id, TO stud_Id FROM Result_G
+RENAME Adv_Id, TO adv_Id FROM Result_G
+PRINT Result_G
+
+CLEAR Student
+CLEAR Advisor
+CLEAR MergeTable
+CLEAR JoinTable
+CLEAR AgeGreater40
+CLEAR Result_G

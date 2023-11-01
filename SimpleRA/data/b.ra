@@ -1,0 +1,12 @@
+LOAD Student
+Student_Females <- SELECT Stud_sex == 1 FROM Student
+Student_Females_Age <- SELECT Stud_age > 16 FROM Student_Females
+FinalResult <- PROJECT Stud_Id, Stud_age FROM Student_Females_Age
+RENAME Stud_Id, TO stud_id FROM FinalResult
+RENAME Stud_age, TO stud_age FROM FinalResult
+PRINT FinalResult
+
+CLEAR Student
+CLEAR Student_Females
+CLEAR Student_Females_Age
+CLEAR FinalResult

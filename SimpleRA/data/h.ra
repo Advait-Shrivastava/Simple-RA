@@ -1,0 +1,17 @@
+LOAD Student
+LOAD Marks
+TableAdvisor2 <- SELECT Advisor_id == 2 FROM Student
+Merge <- CROSS TableAdvisor2 Marks
+JoinTable <- SELECT TableAdvisor2_Stud_Id == Marks_Stud_Id FROM Merge
+MathMarks <- SELECT Maths_marks > 90 FROM JoinTable
+Result_H <- PROJECT TableAdvisor2_Stud_Id FROM MathMarks
+RENAME TableAdvisor2_Stud_Id, TO stud_id FROM Result_H
+PRINT Result_H
+
+CLEAR Student
+CLEAR Marks
+CLEAR TableAdvisor2
+CLEAR Merge
+CLEAR JoinTable
+CLEAR MathMarks
+CLEAR Result_H
